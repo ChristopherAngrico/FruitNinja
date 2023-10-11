@@ -2,7 +2,7 @@
 <img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/4487c494-8582-4e13-b643-f8c89beeaf00" height="70%" width="70%">
 
 ## Description
-The last survivor in a world overrun by monsters, he had faced near-death experiences time and again. Now, armed only with throwing knives, he has become a fearless monster hunter, taking down each terrifying creature one by one.
+Remake simple 3D Fruit ninja game
 
 ## Game Mechanic
 <p>Attack<p/><br/>
