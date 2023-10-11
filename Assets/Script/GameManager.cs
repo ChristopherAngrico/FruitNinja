@@ -1,26 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    [HideInInspector] public bool fadeIn;
+    [HideInInspector] public bool fadeIn, ShowGameOverUI;
     [HideInInspector] public int point;
     private Spawner spawner;
     private Blade blade;
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
         spawner = FindObjectOfType<Spawner>();
         blade = FindObjectOfType<Blade>();
     }
@@ -30,6 +21,7 @@ public class GameManager : MonoBehaviour
     }
     public void ClearScene()
     {
+        point = 0;
         spawner.enabled = false;
         blade.enabled = false;
         GameObject[] gameObject = GameObject.FindGameObjectsWithTag("Fruit");
@@ -40,12 +32,7 @@ public class GameManager : MonoBehaviour
     }
     public void NewGame()
     {
-        spawner.enabled = true;
         blade.enabled = true;
-    }
-    public void Reset()
-    {
-        ClearScene();
-        point = 0;
+        spawner.enabled = true;
     }
 }

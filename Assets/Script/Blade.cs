@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Blade : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Blade : MonoBehaviour
     private SphereCollider bladeCollider;
     public float force;
 
-    [HideInInspector]public bool slice;
+    [HideInInspector] public bool slice;
     [SerializeField] private float minVelocity;
 
     private void Start()
@@ -19,6 +20,7 @@ public class Blade : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             StartSlicing();
@@ -31,6 +33,7 @@ public class Blade : MonoBehaviour
         {
             ContinueSlicing();
         }
+
     }
     private void StartSlicing()
     {
@@ -64,7 +67,7 @@ public class Blade : MonoBehaviour
         Vector3 difference = worldPosition - transform.position;
         float velocity = difference.magnitude / Time.deltaTime;
         bladeCollider.enabled = velocity > minVelocity;
-        
+
         transform.position = worldPosition;
     }
 

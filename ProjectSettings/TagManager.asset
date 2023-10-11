@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Fruit
+  - Whole
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Whole
   - Water
   - UI
   - 

@@ -25,7 +25,7 @@ public class Fading : MonoBehaviour
                 _group.alpha = 1;
                 GameManager.Instance.fadeIn = false;
                 fadeOut = true;
-                GameManager.Instance.Reset();
+                GameManager.Instance.ClearScene();
             }
         }
         if (fadeOut == true)
@@ -35,7 +35,6 @@ public class Fading : MonoBehaviour
             {
                 _group.alpha = 0;
                 fadeOut = false;
-                GameManager.Instance.NewGame();
             }
         }
     }
