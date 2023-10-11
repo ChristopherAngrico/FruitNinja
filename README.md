@@ -5,8 +5,8 @@
 Remake simple 3D Fruit ninja game
 
 ## Game Mechanic
-<p>Attack<p/><br/>
-<img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/8c9b3237-6ae1-4a2b-ae16-81913c0171a3" height="30%" width="30%">
+<p>Blade<p/><br/>
+<img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/bb725caa-e1cb-4d18-a9fe-19af2d2d915a" 30%" width="30%">
 
 ```C#
 private void ThrowKnifeDirection()
