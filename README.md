@@ -1,6 +1,5 @@
 # Fruit ninja
-
-<img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/bd150fb6-9bb0-4bcf-bc7c-26eafd74f49e" height="70%" width="70%">
+<img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/4487c494-8582-4e13-b643-f8c89beeaf00" height="70%" width="70%">
 
 ## Description
 The last survivor in a world overrun by monsters, he had faced near-death experiences time and again. Now, armed only with throwing knives, he has become a fearless monster hunter, taking down each terrifying creature one by one.
