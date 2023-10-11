@@ -64,8 +64,10 @@ Remake simple 3D Fruit ninja game
 ```
 
 <p>Movement<p/><br/>
-<img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/7ff3abb8-6dbb-4f13-95bc-42b76e9b2073" height="30%" width="30%">
-    
+<img src="" height="30%" width="30%">
+    ![Bomb](https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/8de4090f-2a2e-49f4-b3f2-52e91ef9a64a)
+
+
 ```c#
 //Part of bomb class logic
 private void OnTriggerEnter(Collider other)
