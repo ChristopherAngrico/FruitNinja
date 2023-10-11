@@ -67,7 +67,37 @@ Remake simple 3D Fruit ninja game
 <img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/7ff3abb8-6dbb-4f13-95bc-42b76e9b2073" height="30%" width="30%">
     
 ```c#
-rb.velocity = PlayerInput.getPlayerInput.direction * movementSpeed;
+//Part of bomb class logic
+private void OnTriggerEnter(Collider other)
+{
+        if (other.gameObject.CompareTag("Player"))
+        {
+            GameManager.Instance.Fading();
+            UIGameOver.SetEnableGameOver();
+        }
+}
+
+//Part of fading class logic
+if (GameManager.Instance.fadeIn == true)
+        {
+            _group.alpha += Time.deltaTime;
+            if ((1 - _group.alpha) < threshold)
+            {
+                _group.alpha = 1;
+                GameManager.Instance.fadeIn = false;
+                fadeOut = true;
+                GameManager.Instance.ClearScene();
+            }
+        }
+        if (fadeOut == true)
+        {
+            _group.alpha -= Time.deltaTime;
+            if ((_group.alpha) < threshold)
+            {
+                _group.alpha = 0;
+                fadeOut = false;
+            }
+}
 ```
 
 <p>Clone<p/><br/>
