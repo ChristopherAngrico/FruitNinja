@@ -64,8 +64,7 @@ Remake simple 3D Fruit ninja game
 ```
 
 <p>Movement<p/><br/>
-<img src="" height="30%" width="30%">
-    ![Bomb](https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/8de4090f-2a2e-49f4-b3f2-52e91ef9a64a)
+<img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/8de4090f-2a2e-49f4-b3f2-52e91ef9a64a" height="30%" width="30%">
 
 
 ```c#
