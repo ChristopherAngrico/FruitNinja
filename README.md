@@ -63,7 +63,7 @@ Remake simple 3D Fruit ninja game
     }
 ```
 
-<p>Bomb<p/><br/>
+<br/><p>Bomb<p/>
 <img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/8de4090f-2a2e-49f4-b3f2-52e91ef9a64a" height="30%" width="30%">
 
 
@@ -101,7 +101,7 @@ if (GameManager.Instance.fadeIn == true)
 }
 ```
 
-<p>Point<p/><br/>
+<br/><p>Point<p/>
 <img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/e9717aef-db2c-495c-b515-3ae3e6b465e1" height="30%" width="30%">
 
 ```C#
@@ -116,194 +116,97 @@ if (GameManager.Instance.fadeIn == true)
     }
 ```
 
-<p>Restart UI<p></p>
+<br/><p>Restart UI<p>
 <img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/9d527010-df23-42ce-99a5-5a044377e685" height="30%" width="30%">
 <p>Setup animation for Restart UI</p>
 <img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/f9101ecb-17d9-4ca1-89c1-8daef2298cc1" height="30%" width="30%">
 
 
-<p>Boss1 Attack<p/><br/>
-<img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/86130c7f-67c9-4ae1-b9ad-826727822875" height="30%" width="30%">
+<p>Fruit<p/>
+<img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/170d2ed8-84c1-4660-b21c-613749185f3b" height="30%" width="30%">
 
 ```C#
-    private void OnTriggerEnter2D(Collider2D other)
+    //Slice fruit will be trigger when player slash it
+    if (other.gameObject.CompareTag("Player"))
     {
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Clone"))
-        {
+        fruitCollider.enabled = false;
+        g_whole.SetActive(false);
+        g_sliced.SetActive(true);
 
-            damagePlayer = true;
-            if (GameObject.FindWithTag("Clone") != null)
-            {
-                damageClone = true;
-            }
+        Blade blade = other.GetComponent<Blade>();
+        Slice(other, blade.force);
+        GameManager.Instance.point += point;
+    }
+
+    //Slice logic function
+    private void Slice(Collider other, float force)
+    {
+        fruitEffect.Play();
+        //Grab player position
+        Vector3 playerPosition = other.gameObject.transform.position;
+
+        //Find the angle for slicing the fruit
+        Vector2 difference = transform.position - playerPosition;
+        float angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        g_sliced.transform.eulerAngles = Vector3.forward * angle;
+
+        //Slice force
+        float distance = difference.magnitude;
+        Vector3 direction = difference / distance;
+        rbs = g_sliced.GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rb in rbs)
+        {
+            rb.AddForceAtPosition(direction * force, other.transform.position,ForceMode.Impulse);
         }
     }
 ```
 
-<p>Boss1 Walk<p/><br/>
-<img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/475a1834-14e0-4b3a-a736-9e804c5007c4" height="30%" width="30%">
+<br/><p>Spawn<p/>
+<img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/15c1e020-6978-4698-ad5c-09ea514df352" height="30%" width="30%">
 
 ```C#
-private void MoveTowardPlayer()
-    {
-        float speed = 5f;
-        if (playerDetect != null && !triggerAttack && !idleState)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, playerDetect.transform.position, speed * Time.deltaTime);
-            isRunning = true;
-        }
-        else
-        {
-            transform.position += Vector3.zero;
-            isRunning = false;
-        }
-    }
-```
+//Spawn will activate when the game start
+spawnerCollider = GetComponent<BoxCollider>();
 
-<p>Boss1 die<p/><br/>
-<img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/feb9907e-a63e-4fd9-bd3c-7950b8e6c5ad" height="30%" width="30%">
+StartCoroutine(Spawn());
 
-```C#
-private void FixedUpdate()
-    {
-        if (healthSystem.GetHealth() == 0)
-        {
-            detectPlayer.enabled = false;
-            StartCoroutine(Animated());
-        }
-    }
+minBoundsX = spawnerCollider.bounds.min.x;
+maxBoundsX = spawnerCollider.bounds.max.x;
 
-    private IEnumerator Animated()
-    {
-        isDying = true;
-        GetComponent<CapsuleCollider2D>().enabled = false;
-        yield return new WaitForSeconds(2);
-        if (gameObject.tag == "Boss2")
-        {
-            yield return new WaitForSeconds(1);
-            GameManager.instance.Finished();
-            Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-```
-
-<p>Point<p/><br/>
-<img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/86071b8f-42d8-4625-88bb-73ae58c17b82" height="30%" width="30%">
-
-```c#
-foreach (GameObject g_Enemy in g_Enemies)
-        {
-            if (g_Enemy != null)
-            {
-                if (g_Enemy.GetComponentInChildren<HitPlayer>().damagePlayer)
-                {
-                    int enemyDamage = damage;
-                    if (shieldSystem.GetHealth() <= 0)
-                    {
-                        DecreaseHealth(healthSystem, enemyDamage);
-                        g_health.transform.localScale = GetHealtBar(healthSystem);
-                    }
-                    else
-                    {
-                        DecreaseHealth(shieldSystem, enemyDamage);
-                        g_shield.transform.localScale = GetHealtBar(shieldSystem);
-                        UpdateTheUpgradeShield();
-                        lastValueShield = shieldSystem.GetHealth();
-                    }
-                    g_Enemy.GetComponentInChildren<HitPlayer>().damagePlayer = false;
-                    //Player will received point when getting hit by enemy
-                    GameManager.instance.playerPoint += healthSystem.GetPointFromEnemyHit(enemyDamage);
-                }
-            }
-        }
-```
-
-<p>Upgrade UI<p/><br/>
-<img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/e365da18-d551-4479-9c82-08d5834c2566" height="30%" width="30%">
-
-```c#
-public class Upgrade_Button : MonoBehaviour
+// Spawn logic
+//Delay for 2 second when start the game
+yield return new WaitForSeconds(1f);
+while (enabled)
 {
-    [SerializeField]private GameObject g_UpgradeButton;
-    public void Upgrade_UI(){
-        Time.timeScale = 0;
-        g_UpgradeButton.SetActive(true);
-    } 
-    
+    yield return new WaitForSeconds(1f);
+    //Spawn fruit
+    int index = Random.Range(0, fruits.Length);
+    GameObject prefab = fruits[index];
+
+    //Spawn bomb
+    if(Random.value < spawnBombChance)
+    {
+        prefab = bomb;
+    }
+
+    //Grab original position
+    Vector3 newPosition = transform.position;
+    newPosition.x = Random.Range(minBoundsX, maxBoundsX); //clamp random spawn position
+
+    float angle = Random.Range(minAngle, maxAngle);
+    Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    GameObject g = Instantiate(prefab, newPosition, rotation);
+    Rigidbody rb = g.GetComponent<Rigidbody>();
+
+    float force = Random.Range(minForce, maxForce);
+
+    rb.AddForce(force * g.transform.up, ForceMode.Impulse);
+
+    Destroy(g, maxLifeTime);
 }
-```
 
-<p>Boss2 Attack<p/><br/>
-<img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/b8d06361-696d-49d4-b44d-1479694e5e6a" height="30%" width="30%">
-
-```C#
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Clone"))
-        {
-
-            damagePlayer = true;
-            if (GameObject.FindWithTag("Clone") != null)
-            {
-                damageClone = true;
-            }
-        }
-    }
-```
-
-<p>Boss2 walk<p/><br/>
-<img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/38b54c18-e735-4d8e-91b5-4d98b6f5f35f" height="30%" width="30%">
-
-```C#
-private void MoveTowardPlayer()
-    {
-        float speed = 5f;
-        if (playerDetect != null && !triggerAttack && !idleState)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, playerDetect.transform.position, speed * Time.deltaTime);
-            isRunning = true;
-        }
-        else
-        {
-            transform.position += Vector3.zero;
-            isRunning = false;
-        }
-    }
-```
-
-<p>Boss2 die<p/><br/>
-<img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/ed864e71-65b6-41ca-9d96-c6f778c7a968" height="30%" width="30%">
-
-```C#
-private void FixedUpdate()
-    {
-        if (healthSystem.GetHealth() == 0)
-        {
-            detectPlayer.enabled = false;
-            StartCoroutine(Animated());
-        }
-    }
-
-    private IEnumerator Animated()
-    {
-        isDying = true;
-        GetComponent<CapsuleCollider2D>().enabled = false;
-        yield return new WaitForSeconds(2);
-        if (gameObject.tag == "Boss2")
-        {
-            yield return new WaitForSeconds(1);
-            GameManager.instance.Finished();
-            Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+//Spawn will stop if game change to another scene or quit the game
+StopAllCoroutines();
 ```
 
 ## Game controls
