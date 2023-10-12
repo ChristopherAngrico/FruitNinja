@@ -116,26 +116,10 @@ if (GameManager.Instance.fadeIn == true)
     }
 ```
 
-<p>Restart UI<p/><br/>
+<p>Restart UI<p></p>
 <img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/9d527010-df23-42ce-99a5-5a044377e685" height="30%" width="30%">
-<p>Setup animation</p>
+<p>Setup animation for Restart UI</p>
 <img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/f9101ecb-17d9-4ca1-89c1-8daef2298cc1" height="30%" width="30%">
-
-
-```C#
-private void FlippingSprite()
-    {
-        //Flipping sprite by following mouse direction
-        if (differenceXPosition < 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-    }
-```
 
 
 <p>Boss1 Attack<p/><br/>
