@@ -63,7 +63,7 @@ Remake simple 3D Fruit ninja game
     }
 ```
 
-<p>Movement<p/><br/>
+<p>Bomb<p/><br/>
 <img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/8de4090f-2a2e-49f4-b3f2-52e91ef9a64a" height="30%" width="30%">
 
 
@@ -101,36 +101,27 @@ if (GameManager.Instance.fadeIn == true)
 }
 ```
 
-<p>Clone<p/><br/>
-<img src="https://github.com/ChristopherAngrico/Purgatory/blob/main/Purgatory/Clone.png?raw=true" height="30%" width="30%">
+<p>Point<p/><br/>
+<img src="" height="30%" width="30%">
 
-```
- private void Update()
+
+```C#
+ private TextMeshProUGUI text;
+    private void Start()
     {
-        if (buy)
-        {
-            if (!g_clone.activeSelf)
-            {
-                g_maxlevel.SetActive(false);
-                g_clone.SetActive(false);
-                buy = false;
-            }
-        }
+        text = GetComponent<TextMeshProUGUI>();
     }
-    public void Buy()
+    private void Update()
     {
-        if (!g_clone.activeSelf && GameManager.instance.playerPoint >= 100)
-        {
-            buy = true;
-            g_maxlevel.SetActive(true);
-            g_clone.SetActive(true);
-            GameManager.instance.playerPoint -= 100;
-        }
+        text.text = GameManager.Instance.point.ToString();
     }
 ```
 
-<p>Flip<p/><br/>
-<img src="https://github.com/ChristopherAngrico/Purgatory/assets/87889745/1f706385-2949-48d1-823b-81fef4812ce3" height="30%" width="30%">
+<p>Restart UI<p/><br/>
+<img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/9d527010-df23-42ce-99a5-5a044377e685" height="30%" width="30%">
+<p>Setup animation</p>
+<img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/f9101ecb-17d9-4ca1-89c1-8daef2298cc1" height="30%" width="30%">
+
 
 ```C#
 private void FlippingSprite()
