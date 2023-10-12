@@ -102,8 +102,7 @@ if (GameManager.Instance.fadeIn == true)
 ```
 
 <p>Point<p/><br/>
-<img src="" height="30%" width="30%">
-
+<img src="https://github.com/ChristopherAngrico/FruitNinja/assets/87889745/e9717aef-db2c-495c-b515-3ae3e6b465e1" height="30%" width="30%">
 
 ```C#
  private TextMeshProUGUI text;
