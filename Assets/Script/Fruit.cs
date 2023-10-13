@@ -18,7 +18,6 @@ public class Fruit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameObject.layer = LayerMask.NameToLayer("Default");
             fruitCollider.enabled = false;
             g_whole.SetActive(false);
             g_sliced.SetActive(true);
