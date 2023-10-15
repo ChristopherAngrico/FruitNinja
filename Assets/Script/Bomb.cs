@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour
@@ -16,7 +12,7 @@ public class Bomb : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             GameManager.Instance.Fading();
-            UIGameOver.SetEnableGameOver();
+            UIGameOver.SetEnableGameOver(); 
         }
     }
     

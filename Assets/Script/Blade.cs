@@ -57,8 +57,6 @@ public class Blade : MonoBehaviour
     }
     private void ContinueSlicing()
     {
-
-
         Vector3 mousePosition = Input.mousePosition;
         worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         worldPosition.z = 0f;

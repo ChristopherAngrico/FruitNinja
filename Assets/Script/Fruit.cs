@@ -39,7 +39,7 @@ public class Fruit : MonoBehaviour
         float angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         g_sliced.transform.eulerAngles = Vector3.forward * angle;
 
-        //Slice force
+        //Slice force direction
         float distance = difference.magnitude;
         Vector3 direction = difference / distance;
         rbs = g_sliced.GetComponentsInChildren<Rigidbody>();
